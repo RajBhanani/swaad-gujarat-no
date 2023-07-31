@@ -1,6 +1,7 @@
 import { Typography, Button, Menu, MenuItem } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const NavButtonDrawer = () => {
   const handleMenuOpen = (e) => {
@@ -21,7 +22,7 @@ const NavButtonDrawer = () => {
           width: "70px",
           color: "white",
           textTransform: "none",
-          marginTop: "-6px"
+          marginTop: "-6px",
         }}
         onClick={handleMenuOpen}
       >
@@ -42,9 +43,22 @@ const NavButtonDrawer = () => {
         open={Boolean(menuOpen)}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={handleMenuClose}>Test1</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Test1</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Test1</MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Link
+            style={{ textDecoration: "none", color: "inherit" }}
+            to={"/crafts"}
+          >
+            Crafts
+          </Link>
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Link
+            style={{ textDecoration: "none", color: "inherit" }}
+            to={"cuisine"}
+          >
+            Cuisine
+          </Link>
+        </MenuItem>
       </Menu>
     </>
   );

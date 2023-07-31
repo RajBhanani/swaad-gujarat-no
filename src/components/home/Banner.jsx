@@ -1,6 +1,6 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { styled } from "@mui/material";
+import { Typography, styled, Box } from "@mui/material";
 
 import { bannerData } from "../../constants/data";
 
@@ -12,6 +12,23 @@ const StyledImg = styled("img")(({ theme }) => ({
     height: "180px",
   },
 }));
+
+const GreetingBox = styled(Box)({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column",
+});
+
+const Text = styled(Typography)({
+  width: "100%",
+  height: "100%",
+  position: "absolute",
+  color: "white",
+  fontSize: "150px",
+  textShadow: "0px 0px 15 , white",
+  background: "rgba(0,0,0, 0.1)"
+});
 
 const Banner = () => {
   const responsive = {
@@ -40,10 +57,12 @@ const Banner = () => {
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"
       containerClass="carousel-container"
-      
     >
       {bannerData.map((data) => (
-        <StyledImg src={data.url} alt="banner" key={data.id} />
+        <GreetingBox key={data.id}>
+          <StyledImg src={data.url} alt="banner" key={data.id} />
+          <Text>{data.text}</Text>
+        </GreetingBox>
       ))}
     </Carousel>
   );

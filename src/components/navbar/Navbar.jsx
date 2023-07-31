@@ -1,17 +1,13 @@
-import {
-  AppBar,
-  Box,
-  Toolbar,
-  Typography,
-  styled,
-} from "@mui/material";
+import { AppBar, Box, Toolbar, Typography, styled } from "@mui/material";
 import NavButton from "./NavButton";
 import NavButtonComponent from "./NavButtonComponent";
 import NavButtonDrawer from "./NavButtonDrawer";
 
+import { Link } from "react-router-dom";
+
 const NavBox = styled(AppBar)({
   background: "#9c0001",
-  minHeight: "55px"
+  minHeight: "55px",
 });
 
 const NavContainerBox = styled(Box)({
@@ -30,10 +26,16 @@ const Navbar = () => {
           <Typography color={"white"}>જય ગરવી ગુજરાત</Typography>
         </NavContainerBox>
         <NavContainerBox>
-          <NavButton component={<NavButtonComponent text={"Menu"} />} />
-          <NavButton component={<NavButtonComponent text={"Festivals"} />} />
-          <NavButton component={<NavButtonComponent text={"History"} />} />
-          <NavButton component={<NavButtonDrawer />} />
+          <Link to={"/"}>
+            <NavButton component={<NavButtonComponent text={"Menu"} />} />
+          </Link>
+          <Link to={"/festivals"}>
+            <NavButton component={<NavButtonComponent text={"Festivals"} />} />
+          </Link>
+          <Link to={"/history"}>
+            <NavButton component={<NavButtonComponent text={"History"} />} />
+          </Link>
+            <NavButton component={<NavButtonDrawer />} />
         </NavContainerBox>
       </Toolbar>
     </NavBox>
