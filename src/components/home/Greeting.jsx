@@ -7,12 +7,15 @@ const GreetingBox = styled(Box)({
   flexDirection: "column",
 });
 
-const GreetingText = styled(Typography)({
+const GreetingText = styled(Typography)(({ theme }) => ({
   position: "absolute",
   color: "white",
   fontSize: "150px",
   textShadow: "0px 0px 15 , white",
-});
+  [theme.breakpoints.down("lg")]: { fontSize: "100px" },
+  [theme.breakpoints.down("md")]: { fontSize: "80px" },
+  [theme.breakpoints.down("sm")]: { fontSize: "50px" },
+}));
 
 const Greeting = () => {
   return (

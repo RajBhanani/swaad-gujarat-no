@@ -12,6 +12,7 @@ const HomeBox = styled(Box)({
   flexDirection: "column",
   gap: "20px",
   alignItems: "center",
+  justifyContent: "center"
 });
 
 const Home = () => {

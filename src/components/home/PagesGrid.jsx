@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 
 const GridBox = styled(Box)({
   width: "75%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 });
 
 const WrapperGrid = styled(Grid)({
@@ -22,14 +25,13 @@ const PagesGrid = () => {
       behavior: "smooth",
     });
   };
-
   return (
     <GridBox>
       <WrapperGrid container spacing={"60px"}>
         {gridData.map((data) => (
           <Grid item lg={5} md={5} sm={8} xs={12} key={data.key}>
-            <Link to={data.link} onClick={goToTop}>
-              <GridCard url={data.url} text={data.text}/>
+            <Link to={data.link} onClick={goToTop} style={{textDecoration: "none"}}>
+              <GridCard url={data.url} text={data.text} />
             </Link>
           </Grid>
         ))}

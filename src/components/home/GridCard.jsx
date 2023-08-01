@@ -1,20 +1,23 @@
 import { Box, Typography, styled } from "@mui/material";
 
-const GridItemBox = styled(Box)({
+const GridItemBox = styled(Box)(({ theme }) => ({
   width: "100%",
+  height: "300px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  height: "300px",
   background: "white",
-  margin: "20px 0px",
-  boxShadow: "0px 0px 15px black"
-});
+  boxShadow: "0px 0px 15px black",
+  [theme.breakpoints.down("md")]: {
+    width: "auto",
+    height: "200px"
+  }
+}));
 
 const GridText = styled(Typography)({
   fontSize: "40px",
   color: "white",
-  textShadow: "0px 0px 10px white"
+  textShadow: "0px 0px 10px white",
 });
 
 const GridCard = ({ url, text }) => {

@@ -1,66 +1,91 @@
-import { Typography, Button, Menu, MenuItem } from "@mui/material";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Drawer, List, ListItem, styled } from "@mui/material";
 
-const NavButtonDrawer = () => {
-  const handleMenuOpen = (e) => {
-    setMenuOpen(e.currentTarget);
-  };
+import NavButton from "./NavButton";
+import NavButtonComponent from "./NavButtonComponent";
 
-  const handleMenuClose = () => {
-    setMenuOpen(false);
-  };
+import { Link, useLocation } from "react-router-dom";
 
-  const [menuOpen, setMenuOpen] = useState(false);
+const DrawerList = styled(List)({
+  display: "flex",
+  flexDirection: "column",
+  gap: "15px",
+  marginTop: "15px",
+});
+
+const NavButtonDrawer = ({ openDrawer, setOpenDrawer, goToTop, navColours }) => {
+
+  const location = useLocation();
 
   return (
-    <>
-      <Button
-        style={{
-          height: "17px",
-          width: "70px",
-          color: "white",
-          textTransform: "none",
-          marginTop: "-6px",
-        }}
-        onClick={handleMenuOpen}
-      >
-        <Typography style={{ display: "flex", alignItems: "center" }}>
-          More <ArrowDropDownIcon fontSize="xs" />
-        </Typography>
-      </Button>
-      <Menu
-        anchorEl={menuOpen}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "left",
-        }}
-        open={Boolean(menuOpen)}
-        onClose={handleMenuClose}
-      >
-        <MenuItem onClick={handleMenuClose}>
+    <Drawer
+      open={openDrawer}
+      onClose={() => {
+        setOpenDrawer(false);
+      }}
+      PaperProps={{
+        sx: {
+          backgroundColor: navColours[location.pathname],
+        },
+      }}
+    >
+      <DrawerList>
+        <ListItem>
           <Link
-            style={{ textDecoration: "none", color: "inherit" }}
+            to={"/"}
+            onClick={() => {
+              setOpenDrawer(false);
+              goToTop();
+            }}
+          >
+            <NavButton component={<NavButtonComponent text={"Menu"} />} />
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link
+            to={"/festivals"}
+            onClick={() => {
+              setOpenDrawer(false);
+              goToTop();
+            }}
+          >
+            <NavButton component={<NavButtonComponent text={"Festivals"} />} />
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link
+            to={"/history"}
+            onClick={() => {
+              setOpenDrawer(false);
+              goToTop();
+            }}
+          >
+            <NavButton component={<NavButtonComponent text={"History"} />} />
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link
             to={"/crafts"}
+            onClick={() => {
+              setOpenDrawer(false);
+              goToTop();
+            }}
           >
-            Crafts
+            <NavButton component={<NavButtonComponent text={"Crafts"} />} />
           </Link>
-        </MenuItem>
-        <MenuItem onClick={handleMenuClose}>
+        </ListItem>
+        <ListItem>
           <Link
-            style={{ textDecoration: "none", color: "inherit" }}
-            to={"cuisine"}
+            to={"/cuisine"}
+            onClick={() => {
+              setOpenDrawer(false);
+              goToTop();
+            }}
           >
-            Cuisine
+            <NavButton component={<NavButtonComponent text={"Cuisine"} />} />
           </Link>
-        </MenuItem>
-      </Menu>
-    </>
+        </ListItem>
+      </DrawerList>
+    </Drawer>
   );
 };
 
